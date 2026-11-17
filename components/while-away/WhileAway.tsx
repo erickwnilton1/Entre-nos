@@ -1,12 +1,23 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, type ChangeEvent } from 'react';
+import type { AppData } from '../../data/data';
 
-export default function WhileAway({ data, day, done, setDone }) {
+type WhileAwayProps = {
+  data: AppData;
+  day: number;
+  done: Record<number, boolean>;
+  setDone: (done: Record<number, boolean>) => void;
+};
+
+export default function WhileAway({ data, day, done, setDone }: WhileAwayProps) {
   const [saudade, setSaudade] = useState('Toque para receber um abraço em palavras.');
   const [motivo, setMotivo] = useState('');
   const [reveal, setReveal] = useState('');
-  const randomItem = key => data[key][Math.floor(Math.random() * data[key].length)];
+  const randomItem = (key: 'sau' | 'mot'): string => {
+    const items = data[key];
+    return items[Math.floor(Math.random() * items.length)];
+  };
 
   return (
     <>
@@ -49,7 +60,7 @@ export default function WhileAway({ data, day, done, setDone }) {
             <input
               type="checkbox"
               checked={!!done[index]}
-              onChange={event => setDone({ ...done, [index]: event.target.checked })}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => setDone({ ...done, [index]: event.target.checked })}
             />
             <span>{item}</span>
           </label>

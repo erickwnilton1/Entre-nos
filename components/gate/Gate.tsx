@@ -1,4 +1,8 @@
-export default function Gate({ onEnter }) {
+type GateProps = {
+  onEnter: () => void;
+};
+
+export default function Gate({ onEnter }: GateProps) {
   return (
     <div className="gate">
       <div className="orb">E·R</div>

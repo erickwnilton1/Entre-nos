@@ -1,4 +1,12 @@
-export default function Memories({ data, onOpen }) {
+import type { AppData } from '../../data/data';
+import type { ContentModalState } from '../shared/types';
+
+type MemoriesProps = {
+  data: AppData;
+  onOpen: (modal: ContentModalState) => void;
+};
+
+export default function Memories({ data, onOpen }: MemoriesProps) {
   return (
     <>
       <h2>Nossa caixa de <em>memórias</em></h2>

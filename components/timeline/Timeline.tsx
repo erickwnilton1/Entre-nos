@@ -1,11 +1,12 @@
 "use client";
 
 import useNow from '../shared/useNow';
+import type { AppData } from '../../data/data';
 
-export default function Timeline({ data }) {
+export default function Timeline({ data }: { data: AppData }) {
   const now = useNow();
   const start = +new Date(data.dep);
-  const events = [
+  const events: [string, number, string][] = [
     ['Partida', start, 'O começo da sua aventura.'],
     ['Primeiro dia nos EUA', start, 'Tudo novo, tudo possível.'],
     ['30 dias', start + 30 * 864e5, 'Um mês.'],

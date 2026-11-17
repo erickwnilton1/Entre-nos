@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-export default function TypedText({ text }) {
+export default function TypedText({ text }: { text: string }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {

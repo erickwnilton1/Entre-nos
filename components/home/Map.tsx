@@ -1,4 +1,6 @@
-export default function Map({ data }) {
+import type { AppData } from '../../data/data';
+
+export default function Map({ data }: { data: AppData }) {
   return (
     <div className="map">
       <div className="map-line">✈</div>

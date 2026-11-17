@@ -2,8 +2,17 @@
 
 import { isLetterUnlocked } from '../letters/letterAccess';
 import TypedText from '../letters/TypedText';
+import type { AppData } from '../../data/data';
+import type { ContentModalState } from './types';
 
-export default function ContentModal({ modal, data, day, onClose }) {
+type ContentModalProps = {
+  modal: ContentModalState;
+  data: AppData;
+  day: number;
+  onClose: () => void;
+};
+
+export default function ContentModal({ modal, data, day, onClose }: ContentModalProps) {
   const letter = modal.type === 'letter' ? data.cartas[modal.index] : null;
   const memory = modal.type === 'memory' ? data.mem[modal.index] : null;
   const unlocked = modal.type === 'letter'

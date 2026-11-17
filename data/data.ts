@@ -1,4 +1,28 @@
-export const DEFAULT_DATA = {
+export type Coordinate = [number, number];
+export type Letter = [title: string, description: string, message: string];
+export type Memory = [title: string, year: string, description: string];
+export type Surprise = [days: number, title: string, description: string];
+export type Song = [title: string, artist: string, description: string, url: string];
+
+export interface AppData {
+  n1: string;
+  n2: string;
+  orig: string;
+  dest: string;
+  dep: string;
+  ret: string;
+  cartas: Letter[];
+  mem: Memory[];
+  sem: string[];
+  sau: string[];
+  mot: string[];
+  conta: string;
+  sur: Surprise[];
+  todo: string[];
+  pl: Song[];
+}
+
+export const DEFAULT_DATA: AppData = {
   n1: "Eu", n2: "Você", orig: "Recife", dest: "Orlando",
   dep: "2026-12-01T08:00", ret: "2027-03-01T18:00",
   cartas: [
@@ -25,7 +49,7 @@ export const DEFAULT_DATA = {
   pl: [["Nossa música","Artista","Tocou no dia em que nos conhecemos.","https://open.spotify.com"],["Viagem de carro","Artista","A trilha das nossas estradas.","https://youtube.com"]]
 };
 
-export const CITIES = {
+export const CITIES: Record<string, Coordinate> = {
   "Recife": [-8.05,-34.88], "São Paulo": [-23.55,-46.63], "Rio de Janeiro": [-22.9,-43.17],
   "Salvador": [-12.97,-38.5], "Fortaleza": [-3.73,-38.52], "Brasília": [-15.78,-47.93],
   "Belo Horizonte": [-19.92,-43.94], "Porto Alegre": [-30.03,-51.22], "Orlando": [28.54,-81.38],

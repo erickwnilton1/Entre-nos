@@ -1,4 +1,6 @@
-export default function Playlist({ data }) {
+import type { AppData } from '../../data/data';
+
+export default function Playlist({ data }: { data: AppData }) {
   return (
     <>
       <h2>Algumas músicas sempre vão <em>lembrar você.</em></h2>

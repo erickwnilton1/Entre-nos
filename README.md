@@ -1,35 +1,31 @@
-# Entre Nós — Next.js
+# Entre Nós — Next.js + TypeScript
 
-Aplicação migrada para **Next.js com App Router**, mantendo as telas e os recursos da versão React.
+Aplicação Next.js com App Router. O conteúdo é definido de forma estática em `data/data.ts`; não usa backend, API ou `localStorage` para guardar os dados.
 
 ## Requisitos
 - Node.js 20.9 ou superior
-- npm
+- pnpm
 
 ## Executar localmente
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 Acesse http://localhost:3000
 
-## Build de produção
+## Build e verificação de tipos
 ```bash
-npm run build
-npm start
+pnpm build
+pnpm typecheck
 ```
-
-## Painel administrativo
-Acesse `http://localhost:3000/?admin=1` para exibir a aba Admin.
 
 ## Estrutura
 ```text
 app/
   globals.css
-  layout.jsx
-  page.jsx
+  layout.tsx
+  page.tsx
 components/
-  admin/
   gate/
   home/
   letters/
@@ -38,18 +34,11 @@ components/
   shared/
   timeline/
   while-away/
-  EntreNosApp.jsx
+  EntreNosApp.tsx
 data/
-  data.js
+  data.ts
+next.config.ts
+tsconfig.json
 ```
 
-## Persistência e autenticação
-As configurações administrativas são salvas no `localStorage` do navegador atual. O parâmetro `?admin=1` apenas exibe a interface administrativa; ele **não é um mecanismo de autenticação**. Para uso real entre dispositivos, conecte um backend (por exemplo, Supabase) e implemente autenticação e autorização no servidor.
-
-## Notas
-- A aplicação usa o App Router do Next.js.
-- `EntreNosApp.jsx` coordena o estado global, a navegação e os serviços; cada funcionalidade fica em sua pasta dentro de `components/`.
-- Os serviços que usam estado local, efeitos ou interação com o navegador são Client Components.
-- O conteúdo original foi mantido como base.
-- O mapa é uma representação visual simplificada e a distância é calculada a partir das coordenadas em `data/data.js`.
-- Os espaços de memórias são placeholders; imagens reais podem ser adicionadas posteriormente.
+Cada serviço está organizado em sua pasta dentro de `components/`. Para alterar o conteúdo do app, edite `data/data.ts` e publique uma nova versão.

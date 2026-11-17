@@ -1,6 +1,14 @@
+import type { AppData } from '../../data/data';
+import type { ContentModalState } from '../shared/types';
 import { isLetterUnlocked } from './letterAccess';
 
-export default function Letters({ data, day, onOpen }) {
+type LettersProps = {
+  data: AppData;
+  day: number;
+  onOpen: (modal: ContentModalState) => void;
+};
+
+export default function Letters({ data, day, onOpen }: LettersProps) {
   return (
     <>
       <h2>Cartas para <em>você</em></h2>

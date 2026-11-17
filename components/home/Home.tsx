@@ -1,26 +1,26 @@
 "use client";
 
-import { CITIES } from '../../data/data';
+import { CITIES, type AppData, type Coordinate } from '../../data/data';
 import useNow from '../shared/useNow';
 import Map from './Map';
 
-const haversine = (a, b) => {
-  const radians = value => value * Math.PI / 180;
+const haversine = (a: Coordinate, b: Coordinate): number => {
+  const radians = (value: number) => value * Math.PI / 180;
   const h = Math.sin(radians(b[0] - a[0]) / 2) ** 2
     + Math.cos(radians(a[0])) * Math.cos(radians(b[0]))
     * Math.sin(radians(b[1] - a[1]) / 2) ** 2;
   return 12742 * Math.asin(Math.sqrt(h));
 };
 
-const formatNumber = value => value.toLocaleString('pt-BR');
+const formatNumber = (value: number): string => value.toLocaleString('pt-BR');
 
-export default function Home({ data }) {
+export default function Home({ data }: { data: AppData }) {
   const now = useNow();
-  const seconds = Math.max(0, Math.floor((new Date(data.ret) - now) / 1000));
+  const seconds = Math.max(0, Math.floor((+new Date(data.ret) - now) / 1000));
   const origin = CITIES[data.orig] || CITIES.Recife;
   const destination = CITIES[data.dest] || CITIES.Orlando;
   const kilometers = Math.round(haversine(origin, destination));
-  const units = [
+  const units: [number, string][] = [
     [Math.floor(seconds / 86400), 'dias'],
     [Math.floor(seconds % 86400 / 3600), 'horas'],
     [Math.floor(seconds % 3600 / 60), 'min'],
