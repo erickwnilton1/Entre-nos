@@ -41,4 +41,4 @@ next.config.ts
 tsconfig.json
 ```
 
-Cada serviço está organizado em sua pasta dentro de `components/`. Para alterar o conteúdo do app, edite `data/data.ts` e publique uma nova versão.
+Cada serviço está organizado em sua pasta dentro de `components/`. O mapa usa tiles do OpenStreetMap, traça a rota entre as cidades configuradas e requer conexão à internet. Para alterar o conteúdo do app, edite `data/data.ts` e publique uma nova versão.

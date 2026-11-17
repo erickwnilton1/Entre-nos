@@ -1,11 +1,23 @@
-import type { AppData } from '../../data/data';
+import dynamic from 'next/dynamic';
+import { CITIES, type AppData, type Coordinate } from '../../data/data';
+
+const InteractiveMap = dynamic(() => import('./InteractiveMap'), {
+  ssr: false,
+  loading: () => <div className="map-loading" aria-label="Carregando mapa" />
+});
 
 export default function Map({ data }: { data: AppData }) {
+  const origin: Coordinate = CITIES[data.orig] || CITIES.Recife;
+  const destination: Coordinate = CITIES[data.dest] || CITIES.Orlando;
+
   return (
-    <div className="map">
-      <div className="map-line">✈</div>
-      <div className="map-points"><span>●</span><span>●</span></div>
-      <div className="map-labels"><span>{data.orig}</span><span>{data.dest}</span></div>
+    <div className="map" aria-label={`Mapa da rota entre ${data.orig} e ${data.dest}`}>
+      <InteractiveMap
+        origin={origin}
+        destination={destination}
+        originLabel={data.orig}
+        destinationLabel={data.dest}
+      />
     </div>
   );
 }
