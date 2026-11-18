@@ -11,7 +11,7 @@ export default function Memories({ data, onOpen }: MemoriesProps) {
   return (
     <>
       <h2>Nossa caixa de <em>memórias</em></h2>
-      <p className="muted">Se algum dia você esquecer o quanto é amada, venha olhar tudo que já construímos.</p>
+      <p className="muted">Pra te lembrar um pouco dos nossos dias.</p>
       <div className="grid memories">
         {data.mem.map((memory, index) => (
           <button className="polaroid" key={index} onClick={() => onOpen({ type: 'memory', index })}>
