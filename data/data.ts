@@ -1,6 +1,11 @@
 export type Coordinate = [number, number];
 export type Letter = [title: string, description: string, message: string];
-export type Memory = [title: string, year: string, description: string];
+export interface Memory {
+  title: string;
+  year: string;
+  description: string;
+  image: string;
+}
 export type Surprise = [days: number, title: string, description: string];
 export type Song = [title: string, artist: string, description: string, url: string];
 
@@ -23,8 +28,8 @@ export interface AppData {
 }
 
 export const DEFAULT_DATA: AppData = {
-  n1: "Eu", n2: "Você", orig: "Recife", dest: "Orlando",
-  dep: "2026-12-01T08:00", ret: "2027-03-01T18:00",
+  n1: "Eu", n2: "Você", orig: "Recife", dest: "Miami",
+  dep: "2026-12-07T08:00", ret: "2027-02-27T18:00",
   cartas: [
     ["Abra quando estiver indo","Para o momento da partida","Hoje você vai embora, e o meu peito está dividido em dois: um pedaço explodindo de orgulho, outro já sentindo falta.\n\nVocê batalhou por essa viagem. Cada passo seu até aqui me mostrou quem você é, e ver você realizando isso me deixa feliz de um jeito difícil de explicar.\n\nBoa viagem, meu amor. Vá, viva tudo, e volte me contando cada detalhe. A saudade já começou, mas ela vem junto com a certeza de que vale a pena."],
     ["Abra quando sentir saudade","Quando o aperto vier","Eu também estou sentindo. Sinto o seu abraço, aquela conversa sem pressa, o jeito como você ri de coisas que só nós entendemos.\n\nA saudade dói porque o que construímos é grande. Se não fosse, ela nem apareceria.\n\nRespira fundo, fecha os olhos e lembra: estou do outro lado desse mesmo céu, pensando em você agora. A distância não diminui nada do que sinto. Só me faz querer te abraçar mais forte."],
@@ -39,7 +44,12 @@ export const DEFAULT_DATA: AppData = {
     ["Abra quando completar dois meses","A reta final está perto","Dois meses. Quanto caminho, quanta saudade acumulada, quanta história nova para me contar.\n\nO reencontro já dá para sentir de longe. Eu começo a pensar no aeroporto, no abraço, na primeira coisa que vou dizer.\n\nMais um pouquinho. Aproveita o que falta, e carrega a gente junto."],
     ["Abra quando estiver de volta","O reencontro","Você voltou. Finalmente.\n\nEu imaginei esse momento tantas vezes e, mesmo assim, não estava preparado para a alegria que é ter você aqui.\n\nObrigado por ter ido, por ter voltado, e por ter ficado comigo mesmo à distância.\n\nForam dias, semanas e meses contando a distância.\n\nMas agora não precisamos mais contar quilômetros.\n\nSó quero contar os segundos para te abraçar novamente."]
   ],
-  mem: [["Nosso primeiro encontro","2024","O dia em que tudo começou."],["Aquela viagem","2025","Rimos o caminho inteiro."],["Um domingo qualquer","2025","Esses são meus favoritos."],["Nós dois","2026","Antes da partida."]],
+  mem: [
+    { title: "Nosso primeiro encontro", year: "2026", description: "O dia em que tudo começou.", image: "" },
+    { title: "Minha foto favorita", year: "2026", description: "A foto que eu quero pôr em um quadro", image: "" },
+    { title: "Um final de semana qualquer", year: "2025", description: "Esses são meus favoritos.", image: "" },
+    { title: "Nós dois", year: "2026", description: "Antes da partida.", image: "" }
+  ],
   sem: ["Semana 1: você está começando uma história linda. Aproveite.","Semana 2: já passou da fase de adaptação. Olha o quanto você já fez.","Semana 3: me conta uma coisa nova que você aprendeu."],
   sau: ["Fecha os olhos: estou te abraçando agora.","Hoje pensei em você umas mil vezes.","Falta menos do que ontem.","Seu cheiro, seu riso, seu jeito: tudo faz falta."],
   mot: ["Você é a minha pessoa favorita.","Lembra do seu sorriso hoje de manhã? Eu lembro.","Alguém no Brasil tem muito orgulho de você.","Já pensou no que vamos comer quando voltar?"],

@@ -2,6 +2,7 @@
 
 import { isLetterUnlocked } from '../letters/letterAccess';
 import TypedText from '../letters/TypedText';
+import Image from 'next/image';
 import type { AppData } from '../../data/data';
 import type { ContentModalState } from './types';
 
@@ -30,10 +31,20 @@ export default function ContentModal({ modal, data, day, onClose }: ContentModal
               </>
             : <p>Calma, ainda não é hora. Essa carta espera o momento certo.</p>)
           : <>
-              <div className="photo-placeholder"/>
-              <h2>{memory?.[0]}</h2>
-              <div className="mono">{memory?.[1]}</div>
-              <p>{memory?.[2]}</p>
+              <div className="photo-placeholder">
+                {memory?.image && (
+                  <Image
+                    src={memory.image}
+                    alt={memory.title}
+                    fill
+                    sizes="(max-width: 600px) 90vw, 580px"
+                    className="memory-photo"
+                  />
+                )}
+              </div>
+              <h2>{memory?.title}</h2>
+              <div className="mono">{memory?.year}</div>
+              <p>{memory?.description}</p>
             </>}
         <button onClick={onClose}>Fechar</button>
       </article>

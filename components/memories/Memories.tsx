@@ -1,5 +1,6 @@
 import type { AppData } from '../../data/data';
 import type { ContentModalState } from '../shared/types';
+import Image from 'next/image';
 
 type MemoriesProps = {
   data: AppData;
@@ -14,10 +15,20 @@ export default function Memories({ data, onOpen }: MemoriesProps) {
       <div className="grid memories">
         {data.mem.map((memory, index) => (
           <button className="polaroid" key={index} onClick={() => onOpen({ type: 'memory', index })}>
-            <div className="photo-placeholder"/>
-            <h3>{memory[0]}</h3>
-            <div className="mono">{memory[1]}</div>
-            <p>{memory[2]}</p>
+            <div className="photo-placeholder">
+              {memory.image && (
+                <Image
+                  src={memory.image}
+                  alt={memory.title}
+                  fill
+                  sizes="(max-width: 600px) 90vw, 230px"
+                  className="memory-photo"
+                />
+              )}
+            </div>
+            <h3>{memory.title}</h3>
+            <div className="mono">{memory.year}</div>
+            <p>{memory.description}</p>
           </button>
         ))}
       </div>

@@ -8,7 +8,7 @@ const InteractiveMap = dynamic(() => import('./InteractiveMap'), {
 
 export default function Map({ data }: { data: AppData }) {
   const origin: Coordinate = CITIES[data.orig] || CITIES.Recife;
-  const destination: Coordinate = CITIES[data.dest] || CITIES.Orlando;
+  const destination: Coordinate = CITIES[data.dest] || CITIES.Miami;
 
   return (
     <div className="map" aria-label={`Mapa da rota entre ${data.orig} e ${data.dest}`}>

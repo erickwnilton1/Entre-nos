@@ -2,6 +2,7 @@
 
 import { CITIES, type AppData, type Coordinate } from '../../data/data';
 import useNow from '../shared/useNow';
+import HomeCarousel from './HomeCarousel';
 import Map from './Map';
 
 const haversine = (a: Coordinate, b: Coordinate): number => {
@@ -29,13 +30,18 @@ export default function Home({ data }: { data: AppData }) {
 
   return (
     <>
-      <div className="mono">Entre Nós</div>
-      <h1>Entre nós, qualquer <em>distância é pequena.</em></h1>
-      <p className="intro">
-        Existem quilômetros entre nós, um oceano nos separando e meses de saudade pela frente.
-        <br/><br/>Mas existe algo que nenhuma distância consegue mudar: o quanto você é importante para mim.
-        <br/><br/>Fiz esse pequeno espaço para que, mesmo longe, você sempre encontre um pedacinho de nós.
-      </p>
+      <section className="home-hero">
+        <div className="home-copy">
+          <div className="mono">Para minha Rafaela</div>
+          <h1>Entre nós, qualquer <em>distância é pequena.</em></h1>
+          <p className="intro">
+            Existem quilômetros entre nós, um oceano nos separando e longos dias de saudades pela frente.
+            <br/><br/>Mas existe algo que nenhuma distância consegue mudar: o quanto você é importante para mim.
+            <br/><br/>Fiz esse pequeno espaço para que, mesmo longe, você sempre encontre um pedacinho de nós.
+          </p>
+        </div>
+        <HomeCarousel memories={data.mem} />
+      </section>
       <section className="card">
         <Map data={data} />
         <div className="g2 centered">
@@ -52,7 +58,7 @@ export default function Home({ data }: { data: AppData }) {
           ))}
         </div>
       </section>
-      <h2 className="closing"><em>A distância é física. O amor não.</em></h2>
+      <h2 className="closing"><em>Eu te amo, minha vidinha</em></h2>
     </>
   );
 }
