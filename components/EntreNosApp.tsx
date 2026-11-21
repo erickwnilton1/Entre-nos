@@ -6,6 +6,7 @@ import Gate from './gate/Gate';
 import Home from './home/Home';
 import Letters from './letters/Letters';
 import Memories from './memories/Memories';
+import Mural from './mural/Mural';
 import Timeline from './timeline/Timeline';
 import WhileAway from './while-away/WhileAway';
 import ContentModal from './shared/ContentModal';
@@ -18,6 +19,7 @@ const TABS = [
   ['cartas', 'Cartas'],
   ['mem', 'Memórias'],
   ['enq', 'Enquanto isso'],
+  ['mural', 'Mural'],
   ['tm', 'Marcos']
 ] as const satisfies readonly (readonly [AppTab, string])[];
 
@@ -26,7 +28,6 @@ export default function EntreNosApp() {
   const [tab, setTab] = useState<AppTab>('home');
   const data: AppData = DEFAULT_DATA;
   const [modal, setModal] = useState<ContentModalState | null>(null);
-  const [done, setDone] = useState<Record<number, boolean>>({});
   const day = Math.floor((Date.now() - +new Date(data.dep)) / 864e5);
 
   const closeModal = () => setModal(null);
@@ -39,7 +40,8 @@ export default function EntreNosApp() {
   if (tab === 'home') content = <Home data={data} />;
   if (tab === 'cartas') content = <Letters data={data} day={day} onOpen={setModal} />;
   if (tab === 'mem') content = <Memories data={data} onOpen={setModal} />;
-  if (tab === 'enq') content = <WhileAway data={data} day={day} done={done} setDone={setDone} />;
+  if (tab === 'enq') content = <WhileAway data={data} day={day} />;
+  if (tab === 'mural') content = <Mural />;
   if (tab === 'tm') content = <Timeline data={data} />;
 
   if (!entered) return <Gate onEnter={() => setEntered(true)} />;

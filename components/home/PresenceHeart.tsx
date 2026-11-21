@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { getSupabaseClient, getSupabaseSetupError, type HeartAuthor } from '../../lib/supabase';
+import {
+  getSupabaseClient,
+  getSupabaseErrorMessage,
+  getSupabaseSetupError,
+  type HeartAuthor
+} from '../../lib/supabase';
 
 function formatPresenceDate(value: string): string {
   const date = new Date(value);
@@ -23,34 +28,6 @@ function formatPresenceDate(value: string): string {
     year: 'numeric'
   }).format(date);
   return `em ${day}, às ${time}`;
-}
-
-function errorMessage(error: unknown): string {
-  const message = error instanceof Error
-    ? error.message
-    : typeof error === 'string'
-      ? error
-      : typeof error === 'object' && error !== null && 'message' in error && typeof error.message === 'string'
-        ? error.message
-        : '';
-
-  if (/failed to fetch|networkerror|network request failed|load failed/i.test(message)) {
-    return 'Não foi possível conectar ao Supabase. Confira a URL do projeto, a configuração de CORS para o domínio do site e se a rede ou o navegador está bloqueando a conexão.';
-  }
-
-  if (error instanceof Error || typeof error === 'string') return message;
-  if (typeof error === 'object' && error !== null) {
-    const details: string[] = [];
-    if (message) details.push(message);
-    if ('code' in error && typeof error.code === 'string' && error.code) details.push(`código ${error.code}`);
-    if ('details' in error && typeof error.details === 'string' && !error.details.includes('webpack-internal')) {
-      details.push(error.details);
-    }
-    if ('hint' in error && typeof error.hint === 'string' && error.hint) details.push(`dica: ${error.hint}`);
-    if (details.length > 0) return details.join(' — ');
-  }
-
-  return 'Ocorreu um erro inesperado.';
 }
 
 export default function PresenceHeart() {
@@ -87,7 +64,7 @@ export default function PresenceHeart() {
         if (queryError) throw queryError;
         if (active) setLatestHeart(data);
       } catch (loadError) {
-        if (active) setError(`Não foi possível carregar o último coração: ${errorMessage(loadError)}`);
+        if (active) setError(`Não foi possível carregar o último coração: ${getSupabaseErrorMessage(loadError)}`);
       } finally {
         if (active) setLoading(false);
       }
@@ -114,7 +91,7 @@ export default function PresenceHeart() {
       if (insertError) throw insertError;
       setLatestHeart(data);
     } catch (saveError) {
-      setError(`Não foi possível deixar o coração: ${errorMessage(saveError)}`);
+      setError(`Não foi possível deixar o coração: ${getSupabaseErrorMessage(saveError)}`);
     } finally {
       setSaving(false);
     }
