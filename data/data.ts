@@ -7,7 +7,6 @@ export interface Memory {
   image: string;
 }
 export type Surprise = [days: number, title: string, description: string];
-export type Song = [title: string, artist: string, description: string, url: string];
 
 export interface AppData {
   n1: string;
@@ -24,7 +23,6 @@ export interface AppData {
   conta: string;
   sur: Surprise[];
   todo: string[];
-  pl: Song[];
 }
 
 export const DEFAULT_DATA: AppData = {
@@ -69,8 +67,7 @@ export const DEFAULT_DATA: AppData = {
   mot: ["Você é a minha pessoa favorita.","Lembra do seu sorriso hoje de manhã? Eu lembro.","Alguém no Brasil tem muito orgulho de você.","Já pensou no que vamos comer quando voltar?"],
   conta: "Quero te contar uma coisa: eu te amo mais do que ontem, e menos do que amanhã.",
   sur: [[30,"Surpresa de 30 dias","Um mês! Escrevi uma música bobinha para você (cantada muito mal) e vou te mandar por áudio."],[60,"Surpresa de 60 dias","Dois meses. Uma videochamada de jantar, eu cozinho aqui, você pede aí."],[90,"Surpresa de 90 dias","Noventa dias. Tem algo te esperando aqui em casa."]],
-  todo: ["Ir ao cinema e dividir a pipoca","Fazer uma viagem só nós dois","Jantar naquele lugar que a gente adora","Passar um dia inteiro sem celular"],
-  pl: [["Nossa música","Artista","Tocou no dia em que nos conhecemos.","https://open.spotify.com"],["Viagem de carro","Artista","A trilha das nossas estradas.","https://youtube.com"]]
+  todo: ["Ir ao cinema e dividir a pipoca","Fazer uma viagem só nós dois","Jantar naquele lugar que a gente adora","Passar um dia inteiro sem celular"]
 };
 
 export const CITIES: Record<string, Coordinate> = {

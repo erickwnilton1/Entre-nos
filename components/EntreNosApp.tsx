@@ -6,7 +6,6 @@ import Gate from './gate/Gate';
 import Home from './home/Home';
 import Letters from './letters/Letters';
 import Memories from './memories/Memories';
-import Playlist from './playlist/Playlist';
 import Timeline from './timeline/Timeline';
 import WhileAway from './while-away/WhileAway';
 import ContentModal from './shared/ContentModal';
@@ -19,7 +18,6 @@ const TABS = [
   ['cartas', 'Cartas'],
   ['mem', 'Memórias'],
   ['enq', 'Enquanto isso'],
-  ['pl', 'Playlist'],
   ['tm', 'Marcos']
 ] as const satisfies readonly (readonly [AppTab, string])[];
 
@@ -42,7 +40,6 @@ export default function EntreNosApp() {
   if (tab === 'cartas') content = <Letters data={data} day={day} onOpen={setModal} />;
   if (tab === 'mem') content = <Memories data={data} onOpen={setModal} />;
   if (tab === 'enq') content = <WhileAway data={data} day={day} done={done} setDone={setDone} />;
-  if (tab === 'pl') content = <Playlist data={data} />;
   if (tab === 'tm') content = <Timeline data={data} />;
 
   if (!entered) return <Gate onEnter={() => setEntered(true)} />;

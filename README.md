@@ -30,7 +30,6 @@ components/
   home/
   letters/
   memories/
-  playlist/
   shared/
   timeline/
   while-away/

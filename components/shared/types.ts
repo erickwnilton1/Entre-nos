@@ -1,4 +1,4 @@
-export type AppTab = 'home' | 'cartas' | 'mem' | 'enq' | 'pl' | 'tm';
+export type AppTab = 'home' | 'cartas' | 'mem' | 'enq' | 'tm';
 
 export type ContentModalState =
   | { type: 'letter'; index: number }
