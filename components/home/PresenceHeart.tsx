@@ -26,7 +26,31 @@ function formatPresenceDate(value: string): string {
 }
 
 function errorMessage(error: unknown): string {
-  return error instanceof Error ? error.message : 'Ocorreu um erro inesperado.';
+  const message = error instanceof Error
+    ? error.message
+    : typeof error === 'string'
+      ? error
+      : typeof error === 'object' && error !== null && 'message' in error && typeof error.message === 'string'
+        ? error.message
+        : '';
+
+  if (/failed to fetch|networkerror|network request failed|load failed/i.test(message)) {
+    return 'Não foi possível conectar ao Supabase. Confira a URL do projeto, a configuração de CORS para o domínio do site e se a rede ou o navegador está bloqueando a conexão.';
+  }
+
+  if (error instanceof Error || typeof error === 'string') return message;
+  if (typeof error === 'object' && error !== null) {
+    const details: string[] = [];
+    if (message) details.push(message);
+    if ('code' in error && typeof error.code === 'string' && error.code) details.push(`código ${error.code}`);
+    if ('details' in error && typeof error.details === 'string' && !error.details.includes('webpack-internal')) {
+      details.push(error.details);
+    }
+    if ('hint' in error && typeof error.hint === 'string' && error.hint) details.push(`dica: ${error.hint}`);
+    if (details.length > 0) return details.join(' — ');
+  }
+
+  return 'Ocorreu um erro inesperado.';
 }
 
 export default function PresenceHeart() {
@@ -97,9 +121,7 @@ export default function PresenceHeart() {
   };
 
   const latestAuthor = latestHeart
-    ? author
-      ? latestHeart.author === author ? 'Você' : 'Seu amor'
-      : latestHeart.author === 'rafaela' ? 'Rafaela' : 'Você'
+    ? latestHeart.author === 'rafaela' ? 'Rafaela' : 'Erick'
     : null;
   let presenceMessage = 'Ainda não tem coração por aqui. Você pode deixar o primeiro.';
 
@@ -134,7 +156,7 @@ export default function PresenceHeart() {
               disabled={saving}
             >
               <option value="">Escolha uma opção</option>
-              <option value="eu">Eu</option>
+              <option value="eu">Erick</option>
               <option value="rafaela">Rafaela</option>
             </select>
             <button

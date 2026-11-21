@@ -1,8 +1,12 @@
-import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import type { SupabaseClient } from '@supabase/supabase-js';
+import { createClient as createBrowserClient } from '../utils/supabase/client';
+import { getSupabaseSetupError } from '../utils/supabase/config';
+
+export { getSupabaseSetupError } from '../utils/supabase/config';
 
 export type HeartAuthor = 'eu' | 'rafaela';
 
-type Database = {
+export type Database = {
   public: {
     Tables: {
       presence_hearts: {
@@ -33,31 +37,9 @@ type Database = {
 
 let client: SupabaseClient<Database> | null = null;
 
-export function getSupabaseSetupError(): string | null {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!url || !anonKey) {
-    return 'Configure NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_ANON_KEY para ativar os corações.';
-  }
-
-  try {
-    const parsedUrl = new URL(url);
-    if (parsedUrl.protocol !== 'https:' && parsedUrl.protocol !== 'http:') {
-      return 'NEXT_PUBLIC_SUPABASE_URL precisa ser uma URL HTTP ou HTTPS válida.';
-    }
-  } catch {
-    return 'NEXT_PUBLIC_SUPABASE_URL precisa ser uma URL HTTP ou HTTPS válida.';
-  }
-
-  return null;
-}
-
 export function getSupabaseClient(): SupabaseClient<Database> | null {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !anonKey) return null;
+  if (getSupabaseSetupError()) return null;
 
-  if (!client) client = createClient<Database>(url, anonKey);
+  if (!client) client = createBrowserClient();
   return client;
 }
