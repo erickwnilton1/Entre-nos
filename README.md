@@ -8,7 +8,7 @@ Crie um projeto no Supabase e execute `supabase/schema.sql` no SQL Editor. Copie
 O recurso não exige login: quem deixa um coração escolhe “Erick” ou “Rafaela”. Como essa identidade não é verificada, qualquer visitante com acesso ao site pode escolher qualquer opção. A tabela armazena somente essa escolha e o horário. Em produção, configure as variáveis no provedor de hospedagem antes de gerar o build/redeploy.
 
 ## Requisitos
-- Node.js 20.9 ou superior
+- Node.js 22.x
 - pnpm
 
 ## Executar localmente
@@ -23,6 +23,16 @@ Acesse http://localhost:3000
 pnpm build
 pnpm typecheck
 ```
+
+## Publicar na Vercel
+Importe o repositório na Vercel usando o preset **Next.js**. A configuração padrão detecta o comando `pnpm build`; o projeto fixa pnpm 11.9.0 e Node.js 22.x.
+
+Antes do primeiro deploy de produção, em **Project Settings → Environment Variables**, adicione:
+
+- `NEXT_PUBLIC_SUPABASE_URL`: Project URL do projeto Supabase.
+- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`: publishable key do mesmo projeto.
+
+Marque o ambiente **Production** (e também **Preview**/**Development** se precisar usar esses ambientes). Configure as variáveis antes do build e faça um novo deploy após alterá-las. O `.env.local` é apenas local e não é enviado pelo Git. Use a publishable key, nunca uma `service_role` ou outra chave secreta no prefixo `NEXT_PUBLIC_`. Execute também `supabase/schema.sql` no SQL Editor do Supabase para criar as tabelas e habilitar o Realtime.
 
 ## Estrutura
 ```text
