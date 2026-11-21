@@ -4,6 +4,7 @@ import { CITIES, type AppData, type Coordinate } from '../../data/data';
 import useNow from '../shared/useNow';
 import HomeCarousel from './HomeCarousel';
 import Map from './Map';
+import PresenceHeart from './PresenceHeart';
 
 const haversine = (a: Coordinate, b: Coordinate): number => {
   const radians = (value: number) => value * Math.PI / 180;
@@ -58,6 +59,7 @@ export default function Home({ data }: { data: AppData }) {
           ))}
         </div>
       </section>
+      <PresenceHeart />
       <h2 className="closing"><em>Eu te amo, minha vidinha</em></h2>
     </>
   );

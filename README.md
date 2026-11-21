@@ -1,6 +1,11 @@
 # Entre Nós — Next.js + TypeScript
 
-Aplicação Next.js com App Router. O conteúdo é definido de forma estática em `data/data.ts`; não usa backend, API ou `localStorage` para guardar os dados.
+Aplicação Next.js com App Router. O conteúdo principal é definido de forma estática em `data/data.ts`. Os corações de presença são compartilhados entre dispositivos por meio do Supabase.
+
+## Presença com coração
+Crie um projeto no Supabase e execute `supabase/schema.sql` no SQL Editor. Copie `.env.example` para `.env.local` e preencha `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` com os dados do projeto. Reinicie o servidor após configurar as variáveis.
+
+O recurso não exige login: quem deixa um coração escolhe “Eu” ou “Rafaela”. Como essa identidade não é verificada, qualquer visitante com acesso ao site pode escolher qualquer opção. A tabela armazena somente essa escolha e o horário. Em produção, configure as variáveis no provedor de hospedagem antes de gerar o build/redeploy.
 
 ## Requisitos
 - Node.js 20.9 ou superior
@@ -34,6 +39,10 @@ components/
   timeline/
   while-away/
   EntreNosApp.tsx
+lib/
+  supabase.ts
+supabase/
+  schema.sql
 data/
   data.ts
 next.config.ts
