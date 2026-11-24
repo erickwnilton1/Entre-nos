@@ -38,11 +38,11 @@ export default function InteractiveMap({
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <FitRoute origin={origin} destination={destination} />
-      <Polyline positions={[origin, destination]} pathOptions={{ color: '#b23a56', weight: 3, dashArray: '8 8' }} />
-      <CircleMarker center={origin} radius={7} pathOptions={{ color: '#fffaf2', weight: 2, fillColor: '#b23a56', fillOpacity: 1 }}>
+      <Polyline positions={[origin, destination]} pathOptions={{ color: 'var(--r)', weight: 3, dashArray: '8 8' }} />
+      <CircleMarker center={origin} radius={7} pathOptions={{ color: 'var(--bg2)', weight: 2, fillColor: 'var(--r)', fillOpacity: 1 }}>
         <Tooltip direction="top" offset={[0, -8]}>{originLabel}</Tooltip>
       </CircleMarker>
-      <CircleMarker center={destination} radius={7} pathOptions={{ color: '#fffaf2', weight: 2, fillColor: '#b23a56', fillOpacity: 1 }}>
+      <CircleMarker center={destination} radius={7} pathOptions={{ color: 'var(--bg2)', weight: 2, fillColor: 'var(--r)', fillOpacity: 1 }}>
         <Tooltip direction="top" offset={[0, -8]}>{destinationLabel}</Tooltip>
       </CircleMarker>
     </MapContainer>

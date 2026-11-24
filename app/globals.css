@@ -1,4 +1,6 @@
-:root{--bg:#fbf3ee;--bg2:#fff8f3;--card:rgba(255,255,255,.78);--ink:#4b2e33;--soft:#9a7a78;--a:#b5838d;--b:#c19a5f;--r:#d9667d;--line:rgba(181,131,141,.28);--shadow:0 10px 40px rgba(150,90,100,.12);font-family:Jost,system-ui,sans-serif;color:var(--ink);background:var(--bg);font-weight:300}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400&family=Pinyon+Script&display=swap');
+
+:root{--bg:#fbf3ee;--bg2:#fff8f3;--card:rgba(255,255,255,.78);--ink:#4b2e33;--soft:#9a7a78;--a:#b5838d;--b:#c19a5f;--r:#d9667d;--line:rgba(181,131,141,.28);--sombra:0 10px 40px rgba(150,90,100,.12);--shadow:var(--sombra);font-family:Jost,system-ui,sans-serif;color:var(--ink);background:var(--bg);font-weight:300}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;background-image:radial-gradient(70vw 50vh at 100% 0,rgba(224,140,160,.22),transparent),radial-gradient(60vw 50vh at 0 100%,rgba(212,175,120,.2),transparent);background-attachment:fixed;font-size:16.5px;line-height:1.8}
 h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400}h1{font-size:clamp(2.4rem,7vw,4.4rem);line-height:1.08;margin:.3em 0}h2{font-size:2.3rem;line-height:1.15;margin:0 0 .2em}h3{font-size:1.4rem;line-height:1.25;margin:.2em 0}h1 em,h2 em,.closing em{font-family:"Pinyon Script",cursive;font-style:normal;color:var(--r);font-size:1.15em}
 p{margin:.7em 0}.mono{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--b)}.muted,small{color:var(--soft)}small{display:block;font-size:.8rem}
@@ -27,3 +29,46 @@ button{font:inherit;color:var(--ink);cursor:pointer;background:transparent;borde
 @media(max-width:600px){.mural-fields{grid-template-columns:1fr;gap:0}.mural-composer-footer,.mural-entry-heading{align-items:flex-start;flex-direction:column}.mural-actions{width:100%}.mural-actions button{flex:1}.mural-entry{padding:18px}}
 @media(max-width:600px){nav{justify-content:flex-start}.wrap{padding:26px 16px 70px}.card{padding:20px}.map{height:230px}.gate p{font-size:1.45rem}.sheet{padding:30px 22px}.cd span{letter-spacing:.08em}.home-carousel{padding:10px;border-radius:22px}.home-carousel-caption h2{font-size:1.35rem}.home-carousel-placeholder{font-size:1.2rem}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.petals{display:none}}
+
+@media(prefers-color-scheme:dark){
+  :root{--bg:#1f1218;--bg2:#2b1a22;--card:rgba(255,235,235,.06);--ink:#f7e6e4;--soft:#c2a1a3;--a:#e8a9b4;--b:#d9b17a;--r:#f08ea3;--line:rgba(232,169,180,.22);--sombra:0 10px 40px rgba(0,0,0,.4);--shadow:var(--sombra)}
+  .map{background:var(--bg2)}
+}
+
+.mono,.admin-card label{font-family:Jost,system-ui,sans-serif;font-weight:400}
+nav{background:color-mix(in srgb,var(--bg) 85%,transparent)}
+button{transition:background-color .25s ease,border-color .25s ease,color .25s ease,transform .25s ease,box-shadow .25s ease}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--r);outline-offset:3px}
+button:disabled{cursor:not-allowed}
+.wrap{animation:fade-up 1s ease both}
+.card,.home-carousel{transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+.card:hover,.home-carousel:hover{transform:translateY(-4px);border-color:var(--r)}
+.home-carousel-frame{background:linear-gradient(145deg,color-mix(in srgb,var(--a) 35%,var(--bg2)),color-mix(in srgb,var(--b) 28%,var(--bg2)),color-mix(in srgb,var(--r) 28%,var(--bg2)))}
+.home-carousel-arrow:hover{transform:translateY(-50%)}
+.home-carousel-dots button:hover{transform:scale(1.2)}
+.map .leaflet-tile-pane{filter:sepia(.16) saturate(.78)}
+.map .leaflet-tooltip{background:var(--bg2);color:var(--ink);font-style:italic}
+.map .leaflet-tooltip:before{border-top-color:var(--bg2)}
+.map .leaflet-interactive{filter:drop-shadow(0 0 4px color-mix(in srgb,var(--r) 60%,transparent))}
+.cd span{letter-spacing:.25em}
+.polaroid{transform:rotate(-3deg);transition:transform .35s ease,box-shadow .35s ease}
+.polaroid:nth-child(even){transform:rotate(3deg)}
+.polaroid:hover,.polaroid:focus-visible{transform:rotate(0) scale(1.04);z-index:2}
+.gate>*{animation:fade-up .9s ease both}
+.gate>:nth-child(1){animation-delay:0s}
+.gate>:nth-child(2){animation-delay:.15s}
+.gate>:nth-child(3){animation-delay:.3s}
+.gate>:nth-child(4){animation-delay:.45s}
+.sheet{animation:sheet-in .9s cubic-bezier(.2,.75,.25,1) both}
+.letter-card{transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+.letter-card:hover{transform:translateY(-4px)}
+.letter-card.locked{opacity:.55}
+.presence-actions label,.mural-composer label,.admin-card label{font-size:.72rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--b)}
+.presence-submit{background:transparent;border-color:var(--a);color:var(--ink)}
+.presence-submit:hover{background:var(--r);border-color:var(--r);color:#fff}
+.map .leaflet-tooltip{font-weight:500}
+@keyframes fade-up{from{opacity:0;translate:0 18px}to{opacity:1;translate:0 0}}
+@keyframes sheet-in{from{opacity:0;transform:translateY(60px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(prefers-color-scheme:dark){.map .leaflet-tile-pane{filter:sepia(.08) saturate(.72) brightness(.76)}}
+@media(max-width:600px){nav{background:color-mix(in srgb,var(--bg) 85%,transparent)}}
+@media(prefers-reduced-motion:reduce){.wrap{animation:none}.gate>*{animation:none}.sheet{animation:none}}
