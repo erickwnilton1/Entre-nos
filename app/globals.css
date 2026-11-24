@@ -72,6 +72,7 @@ button:disabled{cursor:not-allowed}
 @media(prefers-color-scheme:dark){.map .leaflet-tile-pane{filter:sepia(.08) saturate(.72) brightness(.76)}}
 @media(max-width:600px){nav{background:color-mix(in srgb,var(--bg) 85%,transparent)}}
 @media(prefers-reduced-motion:reduce){.wrap{animation:none}.gate>*{animation:none}.sheet{animation:none}}
-.flag-us{display:block;height:auto;max-width:100%;margin:0 auto .5rem;border:1px solid var(--line);border-radius:.375rem;box-shadow:var(--sombra)}
+.flag-us,.flag-br{display:block;height:auto;max-width:100%;margin:0 auto .5rem;border:1px solid var(--line);border-radius:.375rem;box-shadow:var(--sombra)}
+.g2.centered .flag-us,.g2.centered .flag-br{width:auto;height:40px}
 .gate>.flag-us{animation-delay:.8s}
 .gate>:nth-child(5){animation-delay:.45s}

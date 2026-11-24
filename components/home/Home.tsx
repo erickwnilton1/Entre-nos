@@ -2,6 +2,7 @@
 
 import { CITIES, type AppData, type Coordinate } from '../../data/data';
 import useNow from '../shared/useNow';
+import FlagBR from '../FlagBR';
 import FlagUS from '../FlagUS';
 import HomeCarousel from './HomeCarousel';
 import Map from './Map';
@@ -47,7 +48,7 @@ export default function Home({ data }: { data: AppData }) {
       <section className="card">
         <Map data={data} />
         <div className="g2 centered">
-          <div><div className="mono">Brasil</div>{data.orig}<small>esperando por você</small></div>
+          <div><FlagBR width={76} /><div className="mono">Brasil</div>{data.orig}<small>esperando por você</small></div>
           <div><div className="mono">Distância</div><h2>{formatNumber(kilometers)} km</h2></div>
           <div><FlagUS width={76} /><div className="mono">Estados Unidos</div>{data.dest}<small>sua aventura</small></div>
         </div>
